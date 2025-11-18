@@ -36,7 +36,7 @@ export function LandingPage() {
             {/* Hero Section */}
             <section className="flex-1 flex flex-col items-center justify-center space-y-10 py-24 text-center md:py-32 lg:py-40">
                 <motion.div
-                    className="container px-4 md:px-6"
+                    className="container mx-auto px-4 md:px-6"
                     initial="hidden"
                     animate="show"
                     variants={container}
@@ -64,7 +64,7 @@ export function LandingPage() {
             </section>
 
             {/* Features Section */}
-            <section className="container px-4 md:px-6 py-24 bg-muted/30 rounded-3xl my-8">
+            <section className="container mx-auto px-4 md:px-6 py-24 bg-muted/30 rounded-3xl my-8">
                 <motion.div
                     className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3"
                     initial={{ opacity: 0, y: 40 }}
@@ -103,7 +103,7 @@ export function LandingPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="container px-4 md:px-6 py-24 text-center">
+            <section className="container mx-auto px-4 md:px-6 py-24 text-center">
                 <motion.div
                     className="flex flex-col items-center space-y-6 max-w-2xl mx-auto"
                     initial={{ opacity: 0, scale: 0.95 }}
