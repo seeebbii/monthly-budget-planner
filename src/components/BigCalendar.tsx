@@ -111,17 +111,17 @@ export function BigCalendar({
                             key={day.toString()}
                             onClick={() => onSelectDate(day)}
                             className={cn(
-                                "min-h-[120px] p-2 border-b border-r relative transition-colors cursor-pointer hover:bg-muted/50",
+                                "min-h-[80px] p-1 border-b border-r relative transition-colors cursor-pointer hover:bg-muted/50 flex flex-col gap-1",
                                 !isCurrentMonth && "bg-muted/10 text-muted-foreground",
                                 isSelected && "bg-primary/5 ring-2 ring-inset ring-primary",
-                                dayIdx % 7 === 0 && "border-l-0", // Remove left border for first col if needed (grid handles this mostly)
-                                dayIdx % 7 === 6 && "border-r-0"  // Remove right border for last col
+                                dayIdx % 7 === 0 && "border-l-0",
+                                dayIdx % 7 === 6 && "border-r-0"
                             )}
                         >
                             <div className="flex justify-between items-start">
                                 <span
                                     className={cn(
-                                        "text-sm font-medium h-7 w-7 flex items-center justify-center rounded-full",
+                                        "text-xs font-medium h-6 w-6 flex items-center justify-center rounded-full",
                                         isDayToday && "bg-primary text-primary-foreground",
                                         !isDayToday && isSelected && "text-primary font-bold"
                                     )}
@@ -131,14 +131,14 @@ export function BigCalendar({
                             </div>
 
                             {/* Daily Stats Indicators */}
-                            <div className="mt-2 space-y-1">
+                            <div className="space-y-0.5">
                                 {stats.income > 0 && (
-                                    <div className="text-xs px-1.5 py-0.5 rounded bg-green-100 text-green-700 font-medium truncate">
+                                    <div className="text-[10px] px-1 py-0 rounded bg-green-100 text-green-700 font-medium truncate">
                                         +${stats.income.toFixed(0)}
                                     </div>
                                 )}
                                 {stats.expense > 0 && (
-                                    <div className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700 font-medium truncate">
+                                    <div className="text-[10px] px-1 py-0 rounded bg-red-100 text-red-700 font-medium truncate">
                                         -${stats.expense.toFixed(0)}
                                     </div>
                                 )}

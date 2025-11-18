@@ -45,10 +45,6 @@ export function Calendar({
                 day_hidden: "invisible",
                 ...classNames,
             }}
-            components={{
-                IconLeft: ({ ...props }) => <ChevronLeft className="h-5 w-5" />, // Larger icons
-                IconRight: ({ ...props }) => <ChevronRight className="h-5 w-5" />,
-            }}
             {...props}
         />
     );

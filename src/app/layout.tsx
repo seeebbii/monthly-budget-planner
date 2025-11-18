@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: "Track your income and expenses efficiently.",
 };
 
+import { SettingsProvider } from "@/contexts/SettingsContext";
+import { SettingsSidebar } from "@/components/SettingsSidebar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,12 +23,13 @@ export default function RootLayout({
     <html lang="en" className="light" style={{ colorScheme: 'light' }}>
       <body className={outfit.className} suppressHydrationWarning>
         <AuthProvider>
-          <div className="min-h-screen bg-background font-sans antialiased">
-            <Navbar />
-            <main className="container mx-auto px-4 py-8">
+          <SettingsProvider>
+            <div className="min-h-screen bg-background font-sans antialiased">
+              <Navbar />
+              <SettingsSidebar />
               {children}
-            </main>
-          </div>
+            </div>
+          </SettingsProvider>
         </AuthProvider>
       </body>
     </html>

@@ -15,9 +15,11 @@ import { motion } from "framer-motion";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { BigCalendar } from "@/components/BigCalendar";
 import { startOfMonth, endOfMonth, isWithinInterval, isSameDay } from "date-fns";
+import { useSettings } from "@/contexts/SettingsContext";
 
 export default function Dashboard() {
   const { user, loading } = useAuth();
+  const { currency } = useSettings();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
   const [summary, setSummary] = useState({ income: 0, expense: 0, balance: 0 });
@@ -115,7 +117,7 @@ export default function Dashboard() {
               <CardTitle className="text-sm font-medium">Total Balance (Month)</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">${summary.balance.toFixed(2)}</div>
+              <div className="text-2xl font-bold">{currency.symbol}{summary.balance.toFixed(2)}</div>
             </CardContent>
           </Card>
         </motion.div>
@@ -126,7 +128,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-600">
-                +${summary.income.toFixed(2)}
+                +{currency.symbol}{summary.income.toFixed(2)}
               </div>
             </CardContent>
           </Card>
@@ -138,7 +140,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-600">
-                -${summary.expense.toFixed(2)}
+                -{currency.symbol}{summary.expense.toFixed(2)}
               </div>
             </CardContent>
           </Card>
@@ -152,7 +154,7 @@ export default function Dashboard() {
             selectedDate={selectedDate}
             onSelectDate={(date) => setSelectedDate(date)}
             transactions={transactions}
-            className="min-h-[600px]"
+            className="min-h-[500px]"
           />
         </motion.div>
 
@@ -210,7 +212,7 @@ export default function Dashboard() {
                             className={`p-4 align-middle text-right font-medium ${t.type === "income" ? "text-green-600" : "text-red-600"
                               }`}
                           >
-                            {t.type === "income" ? "+" : "-"}${t.amount.toFixed(2)}
+                            {t.type === "income" ? "+" : "-"}{currency.symbol}{t.amount.toFixed(2)}
                           </td>
                         </tr>
                       ))}
